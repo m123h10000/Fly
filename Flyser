@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Flymania Profile</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    background: #e6f2f2;
+    margin: 20px;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  h1 {
+    text-align: center;
+  }
+  img {
+    width: 100%;
+    border-radius: 10px;
+  }
+  .photo-gallery {
+    margin-top: 20px;
+  }
+  .photo-gallery img {
+    max-width: 150px;
+    margin: 10px;
+    border-radius: 10px;
+    box-shadow: 0 0 5px rgba(0,0,0,0.1);
+  }
+  textarea, input[type="file"] {
+    width: 100%;
+    margin-top: 10px;
+  }
+  button {
+    margin-top: 10px;
+    padding: 10px;
+    width: 100%;
+    background: #3399cc;
+    border: none;
+    color: white;
+    font-weight: bold;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  button:hover {
+    background: #2672a3;
+  }
+</style>
+</head>
+<body>
+
+<h1>Flymania Profile</h1>
+
+<img src="images/flymania.jpg" alt="Flyser" />
+
+<p>Father fly of the fly's</p>
+
+<div class="photo-gallery" id="photoGallery">
+  <!-- Photos will appear here -->
+</div>
+
+<input type="file" id="photoUpload" accept="image/*" />
+<button onclick="uploadPhoto()">Add Photo</button>
+
+<script>
+function uploadPhoto() {
+  const input = document.getElementById('photoUpload');
+  const gallery = document.getElementById('photoGallery');
+  
+  if (input.files && input.files[0]) {
+    const file = input.files[0];
+    const reader = new FileReader();
+    
+    reader.onload = function(e) {
+      const img = document.createElement('img');
+      img.src = e.target.result;
+      gallery.appendChild(img);
+    };
+    
+    reader.readAsDataURL(file);
+    
+    // Clear the input
+    input.value = '';
+  }
+}
+</script>
+
+</body>
+</html>
